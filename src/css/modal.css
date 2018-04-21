@@ -1,0 +1,22 @@
+
+
+.modal-header {
+    background: #202020;
+    color: #ffffff;
+}
+
+.modal-body {
+    background: #202020;
+    color: #ffffff;
+}
+
+.modal-body ul li a {
+    text-align: center;
+    background: #202020;
+    color: #ffffff;
+}
+
+.modal-footer {
+    background: #202020;
+    color: #ffffff;
+}
