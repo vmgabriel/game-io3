@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html >
   <head>
     <meta charset="UTF-8">
@@ -22,74 +21,18 @@
 
 
 <link rel="stylesheet" href="src/css/style.css">
+<link rel="stylesheet" href="src/css/particles.css">
 <link rel="stylesheet" href="src/css/game.css">
 <link rel="stylesheet" href="src/css/modal.css">
-<!--  implementar juego-->
-  <div id="particles-js"></div>
-    <audio id="songs">
-      <source src="src/audio/nava.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="songs2">
-      <source src="audio/pierde.mp3" type="audio/mpeg">
-    </audio>
 
-
-
-
-
-<!-- Botones utiles -->
-    <h3 id="texto3d">salva a Ryan</h3>
-  <div id="puntaje">
-    <p>
-    Tu tamaguchi
-    </p>
-    <h3 id="puntuacion"></h3>
-  </div>
-  <div id="contenedor">
-    <div class="btn-group-vertical">
-      <button id="Jugar" class="btn btn-success"> <i class="fas fa-play"></i></button>
-      <button id="Pausa" class="btn btn-primary"> <i class="fas fa-pause"></i></button>
-      <button id="Reanudar" class="btn btn-warning"> <i class="fas fa-redo-alt"></i></button>
-      <button id="Reiniciar" class="btn btn-danger"> <i class="fas fa-undo-alt"></i></button>
-    </div>
-
-
-
-    <canvas id="canvasGame" width="450" height="450">
-        <!-- aqui es el canvas de jugabilidad y animaciones -->
-    </canvas>
-
-    <div id="canvasButtons" width="450" height="450">
-      <button id="soleado" value="soleado"  > <img src="src/img/game/climaSoleado.png" width=80 height=100 title="Dia soleado"/></button>
-      <button  id="nublado" value="nublado" > <img src="src/img/game/climaFrio.png" width=80 height=100 title="Dia frio"/></button>
-      <button  id="dia" value="dia" ><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
-      <button  id="noche" value="noche"> <img src="src/img/game/noche.png" width=80 height=100 title="Noche"/></button>
-      <button  id="pregunta" value="pregunta"> <img src="src/img/game/pregunta.png" width=80 height=100 title="Pregunta"/></button>
-
-    </div>
-    <script src="src/js/game/platzi.js"></script>
-
-
-
-
-
-
-    <div class="btn-group-vertical">
-      <button id="Instrucciones" class="btn btn-info" data-toggle="modal" data-target="#instrucciones"> <span class="fas fa-tags"></span></button>
-      <button id="Nivel" class="btn btn-toolbar" data-toggle="modal" data-target="#Niveles"> <span class="fas fa-wrench"></span></button>
-    </div>
-  </div>
-
-
-
-
-<!-- Fondo -->
-
-    <script src="src/js/fondo/particles.js"></script>
-    <script src="src/js/fondo/app.js"></script>
-    <script src="src/js/game/funciones.js"></script>
-  </div>
-
+<!-- ############################################################################### -->
+  <audio id="songs">
+    <source src="src/audio/nava.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="songs2">
+    <source src="audio/pierde.mp3" type="audio/mpeg">
+  </audio>
+  <!-- ############################################################################### -->
 
   <!-- Modal -->
   <div id="instrucciones" class="modal fade" role="dialog">
@@ -159,10 +102,10 @@
       </div>
     </div>
   </div>
-<!-- termiane el modal -->
+  <!-- termiane el modal -->
 
-<!--  Nuevo modal para famr over -->
- <div class="modal fade" id="pop_up_puntuacion" tabindex="-1" role="dialog" >
+  <!--  Nuevo modal para famr over -->
+  <div class="modal fade" id="pop_up_puntuacion" tabindex="-1" role="dialog" >
   <div class="modal-dialog">
     <div class="modal-content  text-center">
       <div class="modal-header">
@@ -180,9 +123,78 @@
       </div>
     </div>
   </div>
+  </div>
+
+  <!-- ############################################################################### -->
+
+
+<!--  implementar juego-->
+<!-- particles.js container -->
+<div id="particles-js">
+
+  <div class="row justify-content-center">
+
+    <div class="col">
+      <h3 id="texto3d"><</h3>
+    </div>
+
+    <div class="col">
+      <h3 id="texto3d">Game IO3</h3>
+    </div>
+
+    <div class="col">
+      <h3 id="texto3d">></h3>
+    </div>
+  </div>
+
+  <div id="contenedor" class="row justify-content-center">
+    <div class="btn-group-vertical col">
+      <button id="Jugar" class="btn btn-success"> <i class="fas fa-play"></i></button>
+      <button id="Pausa" class="btn btn-primary"> <i class="fas fa-pause"></i></button>
+      <button id="Reanudar" class="btn btn-warning"> <i class="fas fa-redo-alt"></i></button>
+      <button id="Reiniciar" class="btn btn-danger"> <i class="fas fa-undo-alt"></i></button>
+    </div>
+
+    <div class="col-10 cltext-center">
+      <canvas id="canvasGame" height="400px" width="800px">
+            <!-- aqui es el canvas de jugabilidad y animaciones -->
+        </canvas>
+    </div>
+
+    <div class="btn-group-vertical col">
+      <button id="Instrucciones" class="btn btn-info" data-toggle="modal" data-target="#instrucciones"> <span class="fas fa-tags"></span></button>
+      <button id="Nivel" class="btn btn-toolbar" data-toggle="modal" data-target="#Niveles"> <span class="fas fa-wrench"></span></button>
+    </div>
+  </div>
+
+  <!-- <script src="src/js/game/platzi.js"></script> -->
+
+  <div class="row justify-content-center">
+    <div id="gameButtons" class="col-10 text-center">
+
+      <button id="soleado" value="soleado"> <img src="src/img/game/sunny.png" width=80 height=100 title="Dia soleado"/></button>
+      <button id="nublado" value="nublado"> <img src="src/img/game/winter.png" width=80 height=100 title="Dia frio"/></button>
+      <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+      <button id="noche" value="noche"> <img src="src/img/game/nigth.png" width=80 height=100 title="Noche"/></button>
+
+      <button id="soleado" value="soleado"> <img src="src/img/game/climaSoleado.png" width=80 height=100 title="Dia soleado"/></button>
+      <button id="nublado" value="nublado"> <img src="src/img/game/climaFrio.png" width=80 height=100 title="Dia frio"/></button>
+      <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+      <button id="noche" value="noche"> <img src="src/img/game/noche.png" width=80 height=100 title="Noche"/></button>
+      <button id="pregunta" value="pregunta"> <img src="src/img/game/pregunta.png" width=80 height=100 title="Pregunta"/></button>
+
+
+    
+    </div>
+  </div>
+
 </div>
+<!-- Fondo -->
 
+    <script src="src/js/fondo/particles.js"></script>
+    <script src="src/js/fondo/app.js"></script>
 
+    <script src="src/js/game/funciones.js"></script>
 
   </body>
 </html>

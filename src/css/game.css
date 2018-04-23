@@ -22,25 +22,24 @@
 }
 
 
-#puntaje{
- color:#ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  padding-top: 5px;
-  text-align: center;
-  margin: 10px;
-}
 
 #canvasGame{
-    position: relative;
+    /* position: relative; */
+    background-color: blue;
+    width: 100%;
+    height: auto;
+
+
+    I realise this is an old post, but given that it hasn't been suggested it is worth mentioning that if you are writing for CSS3-compliant browsers, you can use calc:
+
 
     border: $line-color 1px solid;
     box-shadow: 0px 0px 20px black;
-    width: $width;
+    /* width: $width; */
    /* background-color: #eee;
 */
     background-image: -webkit-linear-gradient(45deg, blue 25%,
-transparent 25%, transparent 75%, blue 75%, blue),
+      transparent 25%, transparent 75%, blue 75%, blue),
 -webkit-linear-gradient(45deg, blue 25%, transparent 25%,
 transparent 75%, blue 75%, blue);
 
@@ -61,4 +60,9 @@ transparent 0%, transparent 0%, rgba(94, 111, 135, 1) 75%, rgba(94, 111, 135, 1)
   */background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+
+button{
+  background: none;
 }
