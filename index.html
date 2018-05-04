@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,user-scalable=no ,initial-scale=1.0">
-    <title>IO 3 </title>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no ,initial-scale=1.0">
+  <title>IO 3 </title>
 
 
-<!-- bootstrap 4 -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- terminacion bootstrap 4 -->
+  <!-- bootstrap 4 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <!-- terminacion bootstrap 4 -->
 
-<!--  Migrando iconos del huegp  -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
-<!--  migracion fonts -->
+  <!--  Migrando iconos del huegp  -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <!--  migracion fonts -->
 
 
 
-<link rel="stylesheet" href="src/css/style.css">
-<link rel="stylesheet" href="src/css/particles.css">
-<link rel="stylesheet" href="src/css/game.css">
-<link rel="stylesheet" href="src/css/modal.css">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/particles.css">
+  <link rel="stylesheet" href="src/css/game.css">
+  <link rel="stylesheet" href="src/css/modal.css">
 
-<!-- ############################################################################### -->
+  <!-- ############################################################################### -->
   <audio id="songs">
     <source src="src/audio/nava.mp3" type="audio/mpeg">
   </audio>
@@ -45,21 +46,24 @@
           <h4 class="modal-title">Instruccciones </h4>
         </div>
         <div class="modal-body">
-      <h5>¿Que debo hacer?</h5>
-        <h6>
+          <h5>¿Que debo hacer?</h5>
+          <h6>
           El juego consiste en comer la mayor cantidad de cubitos, sin salirse del panel
         </h6>
-        <h5>¿Como me muevo?</h5>
+          <h5>¿Como me muevo?</h5>
 
-        <ul>
-          <li><h6>Te puedes desplazar hacia arriba (  <i class="fas fa-arrow-up"></i> / W )</h6></li>
-          <li><h6>Te puedes desplazar hacia abajo ( <i class="fas fa-arrow-down"></i> / A )</h6></li>
-          <li>
+          <ul>
+            <li>
+              <h6>Te puedes desplazar hacia arriba (  <i class="fas fa-arrow-up"></i> / W )</h6></li>
+            <li>
+              <h6>Te puedes desplazar hacia abajo ( <i class="fas fa-arrow-down"></i> / A )</h6></li>
+            <li>
               <h6>Te puedes desplazar a la derecha ( <i class="fas fa-arrow-right"></i> / D )</h6></li>
-          <li>  <h6>Te puedes desplazar a la izquierda (  <i class="fas fa-arrow-left"></i> / A )</h6></li>
-        </ul>
+            <li>
+              <h6>Te puedes desplazar a la izquierda (  <i class="fas fa-arrow-left"></i> / A )</h6></li>
+          </ul>
 
-          <img  class="img-responsive" src="./img/teclado.png" alt="Imagen de teclado"></img>
+          <img class="img-responsive" src="./img/teclado.png" alt="Imagen de teclado"></img>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -87,7 +91,7 @@
           Selecciona la rapidez de tu juego
           </h6>
 
-          <Select id="number" class="btn-primary form-control text-center" onchange="getval(this);" >
+          <Select id="number" class="btn-primary form-control text-center" onchange="getval(this);">
               <option value="300">Principiante</option>
               <option value="180">Novato</option>
               <option value="100">Regular</option>
@@ -105,96 +109,97 @@
   <!-- termiane el modal -->
 
   <!--  Nuevo modal para famr over -->
-  <div class="modal fade" id="pop_up_puntuacion" tabindex="-1" role="dialog" >
-  <div class="modal-dialog">
-    <div class="modal-content  text-center">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="">Game Over</h4>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade" id="pop_up_puntuacion" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content  text-center">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="">Game Over</h4>
+        </div>
+        <div class="modal-body">
           <h3 id="pop_up_puntaje"></h3>
 
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary"  id="GameOver" onclick="cambiar_nivel_muerto();"> Cambiar Nivel</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="GameOver" onclick="cambiar_nivel_muerto();"> Cambiar Nivel</button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- ############################################################################### -->
 
 
-<!--  implementar juego-->
-<!-- particles.js container -->
-<div id="particles-js">
+  <!--  implementar juego-->
+  <!-- particles.js container -->
+  <div id="particles-js">
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-    <div class="col">
-      <h3 id="texto3d"><</h3>
+      <div class="col">
+        <h3 id="texto3d"><</h3>
+      </div>
+
+      <div class="col">
+        <h3 id="texto3d">Game IO3</h3>
+      </div>
+
+      <div class="col">
+        <h3 id="texto3d">></h3>
+      </div>
     </div>
 
-    <div class="col">
-      <h3 id="texto3d">Game IO3</h3>
-    </div>
+    <div id="contenedor" class="row justify-content-center">
+      <div class="btn-group-vertical col">
+        <button id="Jugar" class="btn btn-success"> <i class="fas fa-play"></i></button>
+        <button id="Pausa" class="btn btn-primary"> <i class="fas fa-pause"></i></button>
+        <button id="Reanudar" class="btn btn-warning"> <i class="fas fa-redo-alt"></i></button>
+        <button id="Reiniciar" class="btn btn-danger"> <i class="fas fa-undo-alt"></i></button>
+      </div>
 
-    <div class="col">
-      <h3 id="texto3d">></h3>
-    </div>
-  </div>
-
-  <div id="contenedor" class="row justify-content-center">
-    <div class="btn-group-vertical col">
-      <button id="Jugar" class="btn btn-success"> <i class="fas fa-play"></i></button>
-      <button id="Pausa" class="btn btn-primary"> <i class="fas fa-pause"></i></button>
-      <button id="Reanudar" class="btn btn-warning"> <i class="fas fa-redo-alt"></i></button>
-      <button id="Reiniciar" class="btn btn-danger"> <i class="fas fa-undo-alt"></i></button>
-    </div>
-
-    <div class="col-10 cltext-center">
-      <canvas id="canvasGame" height="400px" width="800px">
+      <div class="col-10 cltext-center">
+        <canvas id="canvasGame" height="400px" width="800px">
             <!-- aqui es el canvas de jugabilidad y animaciones -->
         </canvas>
+      </div>
+
+      <div class="btn-group-vertical col">
+        <button id="Instrucciones" class="btn btn-info" data-toggle="modal" data-target="#instrucciones"> <span class="fas fa-tags"></span></button>
+        <button id="Nivel" class="btn btn-toolbar" data-toggle="modal" data-target="#Niveles"> <span class="fas fa-wrench"></span></button>
+      </div>
     </div>
 
-    <div class="btn-group-vertical col">
-      <button id="Instrucciones" class="btn btn-info" data-toggle="modal" data-target="#instrucciones"> <span class="fas fa-tags"></span></button>
-      <button id="Nivel" class="btn btn-toolbar" data-toggle="modal" data-target="#Niveles"> <span class="fas fa-wrench"></span></button>
+    <!-- <script src="src/js/game/platzi.js"></script> -->
+
+    <div class="row justify-content-center">
+      <div id="gameButtons" class="col-10 text-center">
+
+        <button id="soleado" value="soleado"> <img src="src/img/game/sunny.png" width=80 height=100 title="Dia soleado"/></button>
+        <button id="nublado" value="nublado"> <img src="src/img/game/winter.png" width=80 height=100 title="Dia frio"/></button>
+        <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+        <button id="noche" value="noche"> <img src="src/img/game/nigth.png" width=80 height=100 title="Noche"/></button>
+
+        <button id="soleado" value="soleado"> <img src="src/img/game/climaSoleado.png" width=80 height=100 title="Dia soleado"/></button>
+        <button id="nublado" value="nublado"> <img src="src/img/game/climaFrio.png" width=80 height=100 title="Dia frio"/></button>
+        <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+        <button id="noche" value="noche"> <img src="src/img/game/noche.png" width=80 height=100 title="Noche"/></button>
+        <button id="pregunta" value="pregunta"> <img src="src/img/game/pregunta.png" width=80 height=100 title="Pregunta"/></button>
+
+
+
+      </div>
     </div>
+
   </div>
+  <!-- Fondo -->
 
-  <!-- <script src="src/js/game/platzi.js"></script> -->
+  <script src="src/js/fondo/particles.js"></script>
+  <script src="src/js/fondo/app.js"></script>
 
-  <div class="row justify-content-center">
-    <div id="gameButtons" class="col-10 text-center">
-
-      <button id="soleado" value="soleado"> <img src="src/img/game/sunny.png" width=80 height=100 title="Dia soleado"/></button>
-      <button id="nublado" value="nublado"> <img src="src/img/game/winter.png" width=80 height=100 title="Dia frio"/></button>
-      <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
-      <button id="noche" value="noche"> <img src="src/img/game/nigth.png" width=80 height=100 title="Noche"/></button>
-
-      <button id="soleado" value="soleado"> <img src="src/img/game/climaSoleado.png" width=80 height=100 title="Dia soleado"/></button>
-      <button id="nublado" value="nublado"> <img src="src/img/game/climaFrio.png" width=80 height=100 title="Dia frio"/></button>
-      <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
-      <button id="noche" value="noche"> <img src="src/img/game/noche.png" width=80 height=100 title="Noche"/></button>
-      <button id="pregunta" value="pregunta"> <img src="src/img/game/pregunta.png" width=80 height=100 title="Pregunta"/></button>
-
-
-    
-    </div>
-  </div>
-
-</div>
-<!-- Fondo -->
-
-    <script src="src/js/fondo/particles.js"></script>
-    <script src="src/js/fondo/app.js"></script>
-
-    <script src="src/js/game/funciones.js"></script>
+  <script src="src/js/game/funciones.js"></script>
 
   </body>
+
 </html>
