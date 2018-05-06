@@ -1,8 +1,6 @@
-var vp = document.getElementById("villaPlatzi");
+var vp = document.getElementById("canvasGame");
 var papel= vp.getContext("2d");
 
-var canvasPregunta = document.getElementById("canvasP");
-var lienzo = canvasPregunta.getContext("2d");
 
 var min=0;
 var max=7;
@@ -32,7 +30,7 @@ var flechas={
 	right: 39
 }
 var fondo = {
-	url: "tile.png",
+	url: "../../img/game/tile.png",
 	cargaOk: false
 };
 var vaca = {
@@ -92,7 +90,7 @@ pollo.imagen.addEventListener("load", cargarPollo);
 
 function cargarFondo(){
 	fondo.cargaOk = true;
-	
+
 }
 function cargarVaca(){
 	vaca.cargaOk = true;
@@ -110,11 +108,11 @@ function ayuda(){
 	lienzo.drawImage(ayuda,10,10);
 }
 function cargarFondoS(){
-	
+
 	fondo.imagen.src = "tileSoleado.png";
 	papel.drawImage(imgSoleado, 0, 0);
 	dibujarMovimiento();
-	
+
 }
 function cargarFondoN(){
 	fondo.imagen.src = "tileFrio.png";
@@ -137,14 +135,14 @@ function verificarEspacioD(posX,posY,arreglo,rangoY,rangoX,vertical,left){
 	disponible=true;
 		if(vertical){
 			for(var i=0; i< cantidad;i++){
-				
+
 				if((posY==(arreglo[i][1])+rangoY) && (posX>= (arreglo[i][0])-rangoX &&posX<=((arreglo[i][0])+rangoX))){
 					disponible=false;
 				}
 			}
 		}else{
 			for(var i=0; i< cantidad;i++){
-				
+
 				if((posX<=(arreglo[i][0])+rangoX && posX>=(arreglo[i][0])) && (posY>= (arreglo[i][1])-rangoY &&posY<=((arreglo[i][1])+rangoY))&&left==true){
 					disponible=false;
 				}else if((posX>=(arreglo[i][0])+rangoX && posX<=(arreglo[i][0])) && (posY>= (arreglo[i][1])-rangoY &&posY<=((arreglo[i][1])+rangoY))&&left==false){
@@ -162,9 +160,9 @@ function movimiento(evento){
 		disponibleP=verificarEspacioD(vaca.posx,vaca.posy,posPollo,50,60, true,false);
 		if(vaca.posy>0 && disponibleV==true&&disponibleC==true&&disponibleP==true){
 			vaca.posy-=10;
-			dibujarMovimiento();		
+			dibujarMovimiento();
 		}
-		
+
 		break;
 		case flechas.down:
 		disponibleV=verificarEspacioD(vaca.posx,vaca.posy,posVaca,-50, 60,true,false);
@@ -173,7 +171,7 @@ function movimiento(evento){
 		if(vaca.posy<=vp.height-80 && disponibleV==true&&disponibleC==true&&disponibleP==true){
 			vaca.posy+=10;
 			dibujarMovimiento();
-		}			
+		}
 		break;
 		case flechas.left:
 		disponibleV=verificarEspacioD(vaca.posx,vaca.posy,posVaca,40,80,false,true);
@@ -181,8 +179,8 @@ function movimiento(evento){
 		disponibleP=verificarEspacioD(vaca.posx,vaca.posy,posPollo,40,80,false,true);
 		if(vaca.posx>0&& disponibleV==true&&disponibleC==true&&disponibleP==true){
 			vaca.posx-=10;
-			dibujarMovimiento();	
-		}			
+			dibujarMovimiento();
+		}
 		break;
 		case flechas.right:
 		disponibleV=verificarEspacioD(vaca.posx,vaca.posy,posVaca,40,-80,false,false);
@@ -190,8 +188,8 @@ function movimiento(evento){
 		disponibleP=verificarEspacioD(vaca.posx,vaca.posy,posPollo,40,-80,false,false);
 		if(vaca.posx<vp.width-80&& disponibleV==true&&disponibleC==true&&disponibleP==true){
 			vaca.posx+=10;
-			dibujarMovimiento();	
-		}			
+			dibujarMovimiento();
+		}
 		break;
 		default:
 		break;
@@ -208,23 +206,23 @@ function dibujarMovimiento(){
 	//cerdos y pollos
 	for(var i=0; i<cantidad; i++){
 		papel.drawImage(cerdo.imagen,posCerdo[i][0],posCerdo[i][1]);
-		papel.drawImage(pollo.imagen, posPollo[i][0], posPollo[i][1]);	
+		papel.drawImage(pollo.imagen, posPollo[i][0], posPollo[i][1]);
 	}
-	
+
 	papel.drawImage(vaca.imagen,vaca.posx,vaca.posy);
 }
 
 function dibujar(){
-	
+
 	if(fondo.cargaOk){
 	papel.drawImage(fondo.imagen, 0, 0);
 	}
 
 	if(vaca.cargaOk){
 		console.log("cantidad vacas "+cantidad);
-		
+
 		for(var i=0; i<cantidad-1; i++){
-			
+
 		vaca.posx=aleatorio(min,max)*60;
 		vaca.posy=aleatorio(min,max)*60;
 		posVaca[i][0]=vaca.posx;
@@ -239,7 +237,7 @@ function dibujar(){
 	if(cerdo.cargaOk){
 		console.log("cantidad cerdos "+cantidad);
 		for(var i=0; i<cantidad; i++){
-			
+
 		var xv=aleatorio(min,max)*60;
 		var yv=aleatorio(min,max)*60;
 		posCerdo[i][0]=xv;
@@ -251,7 +249,7 @@ function dibujar(){
 	if(pollo.cargaOk){
 		console.log("cantidad pollos "+cantidad);
 		for(var i=0; i<cantidad; i++){
-			
+
 		var xv=aleatorio(min,max)*60;
 		var yv=aleatorio(min,max)*60;
 		posPollo[i][0]=xv;
@@ -259,7 +257,7 @@ function dibujar(){
 		papel.drawImage(pollo.imagen, xv, yv);
 		}
 	}
-			
+
 }
 
 //funcion que crea una matriz
@@ -267,7 +265,7 @@ function crearMatriz(cantidad,limite){
 	var arreglo= new Array();
 	for(var i=0; i<cantidad; i++){
 		arreglo[i]= new Array();
-			
+
 	}
 	return arreglo;
 }

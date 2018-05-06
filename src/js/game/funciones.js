@@ -49,6 +49,11 @@ function selecccionar_nivel(){
 
 }
 
+
+
+////////////////////////////////////
+
+
 var canvas = $("#canvasGame")[0];
 var contexto = canvas.getContext("2d");
 var w = $("#canvasGame").width();
