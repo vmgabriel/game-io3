@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no ,initial-scale=1.0">
+  <title>Juego IO3</title>
+
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/particles.css">
+  <link rel="stylesheet" href="src/css/game.css">
+  <link rel="stylesheet" href="src/css/modal.css">
+
+  <!--  Migrando iconos del juego  -->
+  <link rel="stylesheet" href="src/css/all.css">
+  <!--  migracion fonts -->
+
+  <link rel="stylesheet" href="public/css/bootstrap.min.css">
+
+  <!-- ############################################################################### -->
+  <audio id="songs">
+    <source src="src/audio/nava.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="songs2">
+      <source src="audio/pierde.mp3" type="audio/mpeg">
+      </audio>
+      <!-- ############################################################################### -->
+
+      <!-- Modal -->
+      <div id="instrucciones" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content ">
+            <div class="modal-header ">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Instruccciones </h4>
+            </div>
+            <div class="modal-body">
+              <h5>¿Que debo hacer?</h5>
+              <h6>
+                El juego consiste en comer la mayor cantidad de cubitos, sin salirse del panel
+              </h6>
+              <h5>¿Como me muevo?</h5>
+
+              <ul>
+                <li><h6>Te puedes desplazar hacia arriba (  <i class="fas fa-arrow-up"></i> / W )</h6></li>
+                <li><h6>Te puedes desplazar hacia abajo ( <i class="fas fa-arrow-down"></i> / A )</h6></li>
+                <li>
+                  <h6>Te puedes desplazar a la derecha ( <i class="fas fa-arrow-right"></i> / D )</h6></li>
+                  <li>  <h6>Te puedes desplazar a la izquierda (  <i class="fas fa-arrow-left"></i> / A )</h6></li>
+                </ul>
+
+                <img  class="img-responsive" src="./img/teclado.png" alt="Imagen de teclado"></img>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+        <!-- Modal -->
+        <div id="Niveles" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content text-center">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Selecciona Nivel </h4>
+              </div>
+              <div class="modal-body">
+                <h5>La dificultad</h5>
+
+                <h6>
+                  Selecciona la rapidez de tu juego
+                </h6>
+
+                <Select id="number" class="btn-primary form-control text-center" onchange="getval(this);" >
+                  <option value="300">Principiante</option>
+                  <option value="180">Novato</option>
+                  <option value="100">Regular</option>
+                  <option value="40">Veterano</option>
+                  <option value="5">Innmortal</option>
+                </select>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- termiane el modal -->
+
+        <!--  Nuevo modal para famr over -->
+        <div class="modal fade" id="pop_up_puntuacion" tabindex="-1" role="dialog" >
+          <div class="modal-dialog">
+            <div class="modal-content  text-center">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="">Game Over</h4>
+              </div>
+              <div class="modal-body">
+                <h3 id="pop_up_puntaje"></h3>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary"  id="GameOver" onclick="cambiar_nivel_muerto();"> Cambiar Nivel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ############################################################################### -->
+
+
+        <!--  implementar juego-->
+        <!-- particles.js container -->
+        <div id="particles-js">
+
+          <div class="row justify-content-center">
+
+            <div class="col">
+              <h3 id="texto3d"><</h3>
+            </div>
+
+            <div class="col">
+              <h3 id="texto3d">Game IO3</h3>
+            </div>
+
+            <div class="col">
+              <h3 id="texto3d">></h3>
+            </div>
+          </div>
+
+          <div id="contenedor" class="row justify-content-center">
+            <div class="btn-group-vertical col">
+              <button id="Jugar" class="btn btn-success"> <i class="fas fa-play"></i></button>
+              <button id="Pausa" class="btn btn-primary"> <i class="fas fa-pause"></i></button>
+              <button id="Reanudar" class="btn btn-warning"> <i class="fas fa-redo-alt"></i></button>
+              <button id="Reiniciar" class="btn btn-danger"> <i class="fas fa-undo-alt"></i></button>
+            </div>
+
+            <div class="col-10 cltext-center">
+              <canvas id="canvasGame" height="400px" width="800px">
+                <!-- aqui es el canvas de jugabilidad y animaciones -->
+              </canvas>
+            </div>
+
+            <div class="btn-group-vertical col">
+              <button id="Instrucciones" class="btn btn-info" data-toggle="modal" data-target="#instrucciones"> <span class="fas fa-tags"></span></button>
+              <button id="Nivel" class="btn btn-toolbar" data-toggle="modal" data-target="#Niveles"> <span class="fas fa-wrench"></span></button>
+            </div>
+          </div>
+
+          <!-- <script src="src/js/game/platzi.js"></script> -->
+
+          <div class="row justify-content-center">
+            <div id="gameButtons" class="col-10 text-center">
+
+              <button id="soleado" value="soleado"> <img src="src/img/game/sunny.png" width=80 height=100 title="Dia soleado"/></button>
+              <button id="nublado" value="nublado"> <img src="src/img/game/winter.png" width=80 height=100 title="Dia frio"/></button>
+              <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+              <button id="noche" value="noche"> <img src="src/img/game/nigth.png" width=80 height=100 title="Noche"/></button>
+
+              <button id="soleado" value="soleado"> <img src="src/img/game/climaSoleado.png" width=80 height=100 title="Dia soleado"/></button>
+              <button id="nublado" value="nublado"> <img src="src/img/game/climaFrio.png" width=80 height=100 title="Dia frio"/></button>
+              <button id="dia" value="dia"><img src="src/img/game/dia.png" width=80 height=100 title="Dia" /></button>
+              <button id="noche" value="noche"> <img src="src/img/game/noche.png" width=80 height=100 title="Noche"/></button>
+              <button id="pregunta" value="pregunta"> <img src="src/img/game/pregunta.png" width=80 height=100 title="Pregunta"/></button>
+
+
+
+            </div>
+          </div>
+
+        </div>
+        <!-- Fondo -->
+
+        <script href="public/js/jquery-3.3.1.slim.min.js"></script>
+        <script href="public/js/popper.min.js"></script>
+        <script href="public/js/bootstrap.min.js"></script>
+
+        <script defer href="src/js/all.js"></script>
+
+        <script src="src/js/fondo/particles.js"></script>
+        <script src="src/js/fondo/app.js"></script>
+
+        <script src="src/js/game/funciones.js"></script>
+
+      </body>
+      </html>

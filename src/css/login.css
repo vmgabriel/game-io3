@@ -1,5 +1,5 @@
 html, body {
-  background-color: black ;
+  background-color: #ccc ;
   /* background: #222; */
   /* background: radial-gradient(#333, #111);
   background-position: center center;
@@ -10,15 +10,19 @@ html, body {
 }
 
 
-#logo{
-max-width: : 500px;
+#logo {
+  max-width: : 500px;
 }
 
-footer{
-  color: white;
+footer {
+  color: #111;
+  margin: 2em;
 }
 
-.card{
+.nombres {
+  color: #434334;
+}
 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  }
+.card {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}

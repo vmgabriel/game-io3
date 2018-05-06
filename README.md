@@ -18,5 +18,3 @@ Juego para presentacion de proyecto final de IO 3
 * Alejandro Hernandez
 * Daniel Perea
 * Gabriel Vargas
-
-Recuerden los nombres
