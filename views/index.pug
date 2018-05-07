@@ -1,0 +1,37 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='author' content='I03 - g8')
+  meta(name='viewport' content='width=device-width,initial-scale=1')
+  title Grupo 8 - Investigacion de Operaciones 3
+  link(rel='stylesheet' href='css/bootstrap.min.css')
+  link(rel='stylesheet' href='css/particles.css')
+  link(rel='stylesheet' href='css/login.css')
+div
+  section.h-100
+    .container.h-100
+      .row.justify-content-md-center.h-100
+        .card.card-wrapper
+          .text-center.logo
+            img#logo.rounded.img-fluid(src='img/logo.png' alt='Logo' style='')
+          .card.fat
+            .card-body
+              h4.card-title Inicio de Sesion
+              // Solo se necesita de un valor
+              form(action="/juego" method='GET')
+                .form-group
+                  label(for='code') Codigo:
+                  input#code.form-control.form-control-danger(name='code' value='' placeholder='201xxxxxxxx' required='' autofocus='' type='number')
+                .form-group.no-margin
+                  button.btn.btn-primary.btn-block(type='submit') Login
+  footer.text-center
+    p Grupo Interno 8
+    p.nombres Raul
+    p.nombres Emmanuel
+    p.nombres Daniel Garcia Perea
+    p.nombres Alejandro Hernandez Martinez
+    p.nombres Gabriel Vargas Monroy
+    p Universidad Distrital Francisco Jose de Caldas
+script(src='js/jquery-3.3.1.slim.min.js').
+script(src='js/popper.min.js').
+script(src='js/bootstrap.min.js').
