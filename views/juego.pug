@@ -4,144 +4,21 @@ head
   meta(name='viewport' content='width=device-width,user-scalable=no ,initial-scale=1.0')
   title Juego IO3
   link(rel='stylesheet' href='css/style.css')
-  link(rel='stylesheet' href='css/particles.css')
   link(rel='stylesheet' href='css/game.css')
   link(rel='stylesheet' href='css/modal.css')
   // Migrando iconos del juego
   link(rel='stylesheet' href='css/all.css')
   // migracion fonts
   link(rel='stylesheet' href='css/bootstrap.min.css')
-  // ###############################################################################
-  audio#songs
-    source(src='audio/nava.mp3' type='audio/mpeg')
-  audio#songs2
-    source(src='audio/pierde.mp3' type='audio/mpeg')
-  // ###############################################################################
-  // Modal
-  #instrucciones.modal.fade(role='dialog')
-    .modal-dialog
-      // Modal content
-      .modal-content
-        .modal-header
-          button.close(type='button' data-dismiss='modal') &times;
-          h4.modal-title Instruccciones 
-        .modal-body
-          h5 &iquest;Que debo hacer?
-          h6
-            | El juego consiste en comer la mayor cantidad de cubitos, sin salirse del panel
-          h5 &iquest;Como me muevo?
-          ul
-            li
-              h6
-                | Te puedes desplazar hacia arriba (  
-                i.fas.fa-arrow-up
-                |  / W )
-            li
-              h6
-                | Te puedes desplazar hacia abajo ( 
-                i.fas.fa-arrow-down
-                |  / A )
-            li
-              h6
-                | Te puedes desplazar a la derecha ( 
-                i.fas.fa-arrow-right
-                |  / D )
-            li
-              h6
-                | Te puedes desplazar a la izquierda (  
-                i.fas.fa-arrow-left
-                |  / A )
-          img.img-responsive(src='public/img/teclado.png' alt='Imagen de teclado')
-        .modal-footer
-          button.btn.btn-default(type='button' data-dismiss='modal') Cerrar
-  // Modal
-  #Niveles.modal.fade(role='dialog')
-    .modal-dialog
-      // Modal content
-      .modal-content.text-center
-        .modal-header
-          button.close(type='button' data-dismiss='modal') &times;
-          h4.modal-title Selecciona Nivel 
-        .modal-body
-          h5 La dificultad
-          h6
-            | Selecciona la rapidez de tu juego
-          select#number.btn-primary.form-control.text-center(onchange='getval(this);')
-            option(value='300') Principiante
-            option(value='180') Novato
-            option(value='100') Regular
-            option(value='40') Veterano
-            option(value='5') Innmortal
-        .modal-footer
-          button.btn.btn-default(type='button' data-dismiss='modal') Cerrar
-  // termiane el modal
-  // Nuevo modal para famr over
-  #pop_up_puntuacion.modal.fade(tabindex='-1' role='dialog')
-    .modal-dialog
-      .modal-content.text-center
-        .modal-header
-          button.close(type='button' data-dismiss='modal' aria-hidden='true') &times;
-          h4.modal-title(id='') Game Over
-        .modal-body
-          h3#pop_up_puntaje
-        .modal-footer
-          button.btn.btn-default(type='button' data-dismiss='modal') Cerrar
-          button#GameOver.btn.btn-primary(type='button' onclick='cambiar_nivel_muerto();')  Cambiar Nivel
-  // ###############################################################################
-  // implementar juego
-  // particles.js container
-  #particles-js
-    .row.justify-content-center
-      .col
-        h3#texto3d &lt;
-      .col
-        h3#texto3d Game IO3
-      .col
-        h3#texto3d &gt;
-    #contenedor.row.justify-content-center
-      .btn-group-vertical.col
-        button#Jugar.btn.btn-success
-          i.fas.fa-play
-        button#Pausa.btn.btn-primary
-          i.fas.fa-pause
-        button#Reanudar.btn.btn-warning
-          i.fas.fa-redo-alt
-        button#Reiniciar.btn.btn-danger
-          i.fas.fa-undo-alt
-      .col-10.cltext-center
-        canvas#canvasGame(height='400px' width='800px')
-          // aqui es el canvas de jugabilidad y animaciones
-      .btn-group-vertical.col
-        button#Instrucciones.btn.btn-info(data-toggle='modal' data-target='#instrucciones')
-          span.fas.fa-tags
-        button#Nivel.btn.btn-toolbar(data-toggle='modal' data-target='#Niveles')
-          span.fas.fa-wrench
-    // <script src="src/js/game/platzi.js"></script>
-    .row.justify-content-center
-      #gameButtons.col-10.text-center
-        button#soleado(value='soleado')
-          img(src='img/game/sunny.png' width='80' height='100' title='Dia soleado')
-        button#nublado(value='nublado')
-          img(src='img/game/winter.png' width='80' height='100' title='Dia frio')
-        button#dia(value='dia')
-          img(src='img/game/dia.png' width='80' height='100' title='Dia')
-        button#noche(value='noche')
-          img(src='img/game/nigth.png' width='80' height='100' title='Noche')
-        button#soleado(value='soleado')
-          img(src='img/game/climaSoleado.png' width='80' height='100' title='Dia soleado')
-        button#nublado(value='nublado')
-          img(src='img/game/climaFrio.png' width='80' height='100' title='Dia frio')
-        button#dia(value='dia')
-          img(src='img/game/dia.png' width='80' height='100' title='Dia')
-        button#noche(value='noche')
-          img(src='img/game/noche.png' width='80' height='100' title='Noche')
-        button#pregunta(value='pregunta')
-          img(src='img/game/pregunta.png' width='80' height='100' title='Pregunta')
+  
+body
+  canvas#canvasGame(height='400px' width='800px')
   // Fondo
   script(href='js/jquery-3.3.1.slim.min.js').
   script(href='js/popper.min.js').
   script(href='js/bootstrap.min.js').
-  script(defer='' href='js/all.js').
-  script(src='js/fondo/particles.js')
-  script(src='js/fondo/app.js')
-  script(src='js/game/funciones.js')
+  script(defer='' href='js/all.js')
+  
+  script(src='js/game/pantallaCompleta.js')
+  script(src='js/game/fondo.js')
+  //script(src='js/game/inter.js')

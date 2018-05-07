@@ -44,15 +44,7 @@ function getval(sel) {
 
 function selecccionar_nivel(){
   $("#Niveles").modal('show');
-
-
-
 }
-
-
-
-////////////////////////////////////
-
 
 var canvas = $("#canvasGame")[0];
 var contexto = canvas.getContext("2d");
