@@ -27,6 +27,23 @@ app.get("/puntaje", (req, res) => {
   });
 });
 
+app.get("/menu", (req, res) => {
+  //req.query.code
+  if (!req.query.code){
+    res.render("404", {comentario: "Datos no Introducidos"});
+  } else {
+    jugador.findOne({_id: req.query.code}, (err, doc) => {
+      if (err) {console.log(err);}
+      if (!doc) {
+        res.render("404", {comentario: "Codigo no Encontrado"});
+      }
+      else {
+        res.render("menu", {code: req.query.code});
+      }
+    });
+  }
+});
+
 app.get("/juego", (req, res) => {
   //req.query.code
   if (!req.query.code){
@@ -46,6 +63,10 @@ app.get("/juego", (req, res) => {
 
 app.post("/puntaje", (req, res) => {
   console.log(req.datos);
+});
+
+app.get("/creditos", (req, res) => {
+  res.render("creditos");
 });
 
 app.get("/404", (req, res) => {
