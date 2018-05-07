@@ -5,8 +5,31 @@ head
   meta(name='viewport' content='width=device-width,initial-scale=1')
   title Top Puntajes
   link(rel='stylesheet' href='css/bootstrap.min.css')
+  link(rel='stylesheet' href='css/puntaje.css')
+nav.navbar.navbar-dark.bg-dark
+  a.navbar-brand(href='/')
+    h4 Mark Game Weather
+  .navbar-text
+    h4 Mejores Puntajes
 .container
-  h1 Aqui se Mostraran los puntajes
+  .card
+    table.table.table-striped
+      thead
+        tr
+          th(scope='col') #
+          th(scope='col') Nombre
+          th(scope='col') Grupo
+          th(scope='col') Puntaje
+      tbody
+        - var cont = 1
+        for puntaje in datos
+          tr
+            th(scope='row')= cont
+            td= puntaje.jugador.nombre
+            td= puntaje.jugador.grupo
+            td= puntaje.puntaje
+          - cont = cont + 1;
+
 script(href='js/jquery-3.3.1.slim.min.js').
 script(href='js/popper.min.js').
 script(href='js/bootstrap.min.js').

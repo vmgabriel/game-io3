@@ -1,0 +1,44 @@
+
+  {
+  "jugador": [
+    { "_id": 1, "nombre": " Lilian Astrid Bejarano Garzon", "grupo":0, "intentos":8 },
+    { "_id": 20111020014, "nombre": "CARDENAS MANUEL ANTONIO", "grupo":9, "intentos":3 },
+    { "_id": 20121020067, "nombre": "BAQUERO JOHER MAURICIO", "grupo":5, "intentos":3 },
+    { "_id": 20121020115, "nombre": "VILLAMIL PEREZ VICTOR MANUEL", "grupo":10, "intentos":3 },
+    { "_id": 20122020054, "nombre": "VALDERRAMA LUIS ERNESTO", "grupo":9, "intentos":3 },
+    { "_id": 20122020122, "nombre": "SUA CARLOS FERNANDO", "grupo":4, "intentos":3 },
+    { "_id": 20122020125, "nombre": "TACHA GUTIERREZ OSCAR JUNIOR", "grupo":4, "intentos":3 },
+    { "_id": 20122020069, "nombre": "CLAVIJO TOBON LUIS DANIEL", "grupo":4, "intentos":3 },
+    { "_id": 20131020022, "nombre": "MORALES JORGE ALEJANDRO", "grupo":1, "intentos":3 },
+    { "_id": 20131020047, "nombre": "JARAMILLO VERA ESTEFANY", "grupo":1, "intentos":3 },
+    { "_id": 20131020101, "nombre": "SANCHEZ JONATHAN JAVIER", "grupo":4, "intentos":3 },
+    { "_id": 20132020603, "nombre": "ESPITIA BRAYAN LEONARDO", "grupo":5, "intentos":3 },
+    { "_id": 20141020018, "nombre": "PEÑUELA MESA EDISON ENRIQUE", "grupo":1, "intentos":3 },
+    { "_id": 20141020028, "nombre": "ROLONG GERARDO ERNESTO", "grupo":1, "intentos":3 },
+    { "_id": 20141020062, "nombre": "VARGAS MARTINEZ JUAN NICOLAS", "grupo":6, "intentos":3 },
+    { "_id": 20141020063, "nombre": "PARRA DAZA DIEGO ALEJANDRO", "grupo":7, "intentos":3 },
+    { "_id": 20141020069, "nombre": "GOMEZ EMMANUEL FERNANDO", "grupo":8, "intentos":3 },
+    { "_id": 20141020072, "nombre": "MARTINEZ VALLEJOS RAUL", "grupo":8, "intentos":3 },
+    { "_id": 20141020078, "nombre": "HERNANDEZ GARCIA MAYCOL", "grupo":1, "intentos":3 },
+    { "_id": 20141020103, "nombre": "DIAZ PARRA JOAN SEBASTIAN", "grupo":2, "intentos":3 },
+    { "_id": 20141020105, "nombre": "RODRIGUEZ EMANUEL STEVEN", "grupo":6, "intentos":3 },
+    { "_id": 20141020107, "nombre": "VARGAS MONROY GABRIEL", "grupo":8, "intentos":3 },
+    { "_id": 20141020116, "nombre": "IBAÑEZ CHRISTIAN CAMILO", "grupo":6, "intentos":3 },
+    { "_id": 20141020118, "nombre": "SUAREZ RIVERA MICHAEL DANIEL", "grupo":2, "intentos":3 },
+    { "_id": 20141020140, "nombre": "SIERRA TORRES JORGE ELIECER", "grupo":6, "intentos":3 },
+    { "_id": 20141020212, "nombre": "DANIEL GARCIA PEREA", "grupo":8, "intentos":3 },
+    { "_id": 20141020215, "nombre": "AGUIRRE CAÑAS CARLOS ANDRES", "grupo":2, "intentos":3 },
+    { "_id": 20141020231, "nombre": "GONZALEZ SULVARADO CAMILO", "grupo":2, "intentos":3 },
+    { "_id": 20141020271, "nombre": "HERNANDEZ DIEGO ALEJANDRO", "grupo":8, "intentos":3 },
+    { "_id": 20142020007, "nombre": "ORTEGA RAMIREZ JOSE RICARDO", "grupo":9, "intentos":3 },
+    { "_id": 20142020013, "nombre": "LOPEZ MORENO JOHAN SEBASTIAN", "grupo":9, "intentos":3 },
+    { "_id": 20142020037, "nombre": "AREVALO VENEGAS IVAN RENE", "grupo":9, "intentos":3 },
+    { "_id": 20142020152, "nombre": "ROZO PIÑEROS CAMILO ARMANDO", "grupo":7, "intentos":3 },
+    { "_id": 20151020001, "nombre": "CAPERA JONATHAN STEVEN", "grupo":10, "intentos":3 },
+    { "_id": 20151020016, "nombre": "VANEGAS SEBASTIAN CAMILO", "grupo":3, "intentos":3 }
+  ],
+
+  "puntaje":[
+    {"_id":0,"puntaje":0,"fecha_de_intento":"0/0/0","intento_numero":0,"id_jugador":1}
+  ]
+}
