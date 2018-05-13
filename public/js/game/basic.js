@@ -2,13 +2,12 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
 
 var PhaserGame = function () {
   this.sprite;
-  this.buttonA;
-  this.buttonB;
   this.veggies;
   this.bulletTime = 0;
   this.bullet;
   this.pad;
   this.velx = 0;
+  this.stick;
 };
 PhaserGame.prototype = {
   init: function () {
@@ -28,11 +27,10 @@ PhaserGame.prototype = {
 
     this.pad = this.game.plugins.add(Phaser.VirtualJoystick);
 
-    this.buttonA = this.pad.addButton(50, 300, 'generic', 'button1-up', 'button1-down');
-    this.buttonA.onDown.add(this.pressButtonA, this);
-
-    this.buttonB = this.pad.addButton(750, 300, 'generic', 'button2-up', 'button2-down');
-    this.buttonB.onDown.add(this.pressButtonB, this);
+    this.stick = this.pad.addStick(0, 0, 200, 'generic');
+    this.stick.scale = 0.6;
+    this.stick.alignBottomLeft(20);
+    this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
     this.veggies = game.add.group();
     this.veggies.enableBody = true;
@@ -40,9 +38,9 @@ PhaserGame.prototype = {
 
     for (var i = 0; i < 50; i++)
     {
-        var c = this.veggies.create(game.world.randomX, Math.random() * 500, 'veggies', game.rnd.integerInRange(0, 36));
-        c.name = 'veg' + i;
-        c.body.immovable = true;
+      var c = this.veggies.create(game.world.randomX, Math.random() * 500, 'veggies', game.rnd.integerInRange(0, 36));
+      c.name = 'veg' + i;
+      c.body.immovable = true;
     }
 
     this.sprite = game.add.sprite(400, 550, 'phaser');
@@ -54,16 +52,20 @@ PhaserGame.prototype = {
     game.input.onDown.add(gofull, this);
   },
 
-  pressButtonA: function () {
-    this.velx -= 300;
-  },
-
-  pressButtonB: function () {
-    this.velx += 300;
-  },
-
   update: function () {
-    this.sprite.body.velocity.x = this.velx;
+    var maxSpeed = 200;
+    if (this.stick.isDown)
+    {
+      this.sprite.body.velocity.x = this.stick.forceX * maxSpeed;
+    }
+    else
+    {
+      this.sprite.body.velocity.x = 0;
+    }
+    if (this.sprite.x < 130)
+    {
+      this.sprite.x = 130;
+    }
   }
 };
 
