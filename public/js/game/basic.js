@@ -1,19 +1,33 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
 
 var PhaserGame = function () {
+  // Sprites
   this.sprite;
   this.hojas;
-  this.bulletTime = 0;
-  this.bullet;
+
+  // Joystick
   this.pad;
   this.stick;
 
   // Animaciones
   this.quieto;
 
+  // Tiempo
   this.timer;
   this.timerText;
+
+  // Vida
+  this.vida = 3;
+  this.corazones;
+  this.posCorazon = 30;
+
+  // Gravedad
+  this.gravedad = 80;
+
+  // Particulas en el juego
+  this.particulas = 17;
 };
+
 PhaserGame.prototype = {
   init: function () {
     this.game.renderer.renderSession.roundPixels = true;
@@ -27,11 +41,15 @@ PhaserGame.prototype = {
     // Josystick
     this.load.atlas('generic', 'img/game/joystick/generic-joystick.png', 'json/generic-joystick.json');
 
+    // Corazones
+    game.load.image('corazon', 'img/game/type/heart.png');
+
     // Personaje
     var code = getParameterByName('code');
     if (code != "1" || code != "20131020047")
     {
       game.load.spritesheet('pQuieto', 'img/game/man/quieto.png', 319, 486, 10);
+      game.load.spritesheet('pMuerto', 'img/game/man/muerto.png', )
     }
     else
     {
@@ -44,6 +62,9 @@ PhaserGame.prototype = {
 
   create: function ()
   {
+    // Poniendo gravedad del juego
+    game.physics.arcade.gravity.y = this.gravedad;
+
     // Fondo
     this.add.image(0, 0, 'bg');
 
@@ -56,23 +77,31 @@ PhaserGame.prototype = {
     this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
     // Particulas
-    this.hojas = game.add.emitter(game.world.centerX, 0, 100);
+    // this.hojas = game.add.physicsGroup();
+    // for (var i=0; i < this.particulas; i++)
+    // {
+    //   var c = this.hojas.create(game.world.randomX, 0, 'hoja1');
+    //   c.name = 'hoj' + i;
+    //   c.body.immovable = true;
+    //   c.scale.setTo((Math.random() * 0.6) + 0.01);
+    // }
+    this.hojas = game.add.group();
+    this.hojas.createMultiple(250, 'hoja1', 0, false);
+    //this.hojas.scale.setTo((Math.random() * 0.6) + 0.01);
+    game.physics.enable(this.hojas, Phaser.Physics.ARCADE);
 
-    this.hojas.makeParticles('hoja1');
+    game.time.events.loop(150, generacionHojas, this);
 
-    this.hojas.minParticleSpeed.setTo(-200, 30);
-    this.hojas.maxParticleSpeed.setTo(300, 100);
-    this.hojas.minParticleScale = 0.1;
-    this.hojas.maxParticleScale = 0.6;
-    this.hojas.gravity = 60;
-
-    //  This will emit a quantity of 5 particles every 500ms. Each particle will live for 2000ms.
-    //  The -1 means "run forever"
-    this.hojas.flow(5000, 500, 5, -1);
-
-    //  This will emit a single particle every 100ms. Each particle will live for 2000ms.
-    //  The 100 means it will emit 100 particles in total and then stop.
-    // this.hojas.flow(2000, 100, 1, 100);
+    // Corazones
+    this.corazones = game.add.physicsGroup();
+    for (var i = 0; i < this.vida; i++)
+    {
+      var c = this.corazones.create(30*(i+1), 30, 'corazon');
+      c.name = 'coraz' + i;
+      c.body.immovable = true;
+      c.scale.setTo(1.6);
+      c.body.allowGravity = false;
+    }
 
     // Personaje
     this.sprite = game.add.sprite(300, 500, 'pQuieto');
@@ -80,6 +109,7 @@ PhaserGame.prototype = {
     this.sprite.animations.play('quieto', 10, true);
     this.sprite.scale.setTo(0.2, 0.2);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+    this.sprite.body.allowGravity = false;
 
     // Tiempo en Juego
     this.timer = this.time.create();
@@ -92,7 +122,9 @@ PhaserGame.prototype = {
   },
 
   update: function () {
+    // Velocidad Maxima del Personaje
     var maxSpeed = 200;
+
     if (this.stick.isDown)
     {
       this.sprite.body.velocity.x = this.stick.forceX * maxSpeed;
@@ -105,12 +137,37 @@ PhaserGame.prototype = {
     {
       this.sprite.x = 130;
     }
+
+    // Actualizacion del tiempo en pantalla
     this.timerText.text = this.timer.seconds.toFixed(1);
+
+    // Eliminar las hojas al salir del mundo
+    this.hojas.forEachAlive(checkBounds, this);
   }
 };
 
 function gofull() {
   game.scale.startFullScreen();
+}
+
+function generacionHojas() {
+  var hoja = this.hojas.getFirstExists(false);
+  if (hoja)
+  {
+    hoja.frame = game.rnd.integerInRange(0,6);
+    hoja.exists = true;
+    hoja.reset(game.world.randomX, 0);
+    hoja.scale.setTo((Math.random() * 0.6) + 0.01);
+    //hoja.body.bounce.y = 0.8;
+  }
+}
+
+function checkBounds(hoja)
+{
+  if (hoja.y > game.world.width)
+  {
+    hoja.kill();
+  }
 }
 
 function getParameterByName(name) {
