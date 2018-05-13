@@ -1,97 +1,85 @@
-var App = function() {};
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
 
-App.prototype.start = function()
-{
-	// Scenes
-	var scenes = [];
+var PhaserGame = function () {
+  this.sprite;
+  this.buttonA;
+  this.buttonB;
+  this.veggies;
+  this.bulletTime = 0;
+  this.bullet;
+  this.pad;
+  this.velx = 0;
+};
+PhaserGame.prototype = {
+  init: function () {
+    this.game.renderer.renderSession.roundPixels = true;
+    this.physics.startSystem(Phaser.Physics.ARCADE);
+  },
+  preload: function () {
+    this.load.image('bg', 'img/game/sky2.png');
+    this.load.atlas('generic', 'img/game/joystick/generic-joystick.png', 'json/generic-joystick.json');
 
-	//scenes.push(BootScene);
-	scenes.push(PreloadScene);
-	//scenes.push(IntroScene);
+    game.load.image('phaser', 'img/game/phaser-dude.png');
+    game.load.spritesheet('veggies', 'img/game/fruitnveg32wh37.png', 32, 32);
+  },
 
-	// Game config
-  var config = {
-    type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    parent: 'juego',
-    id: 'canvasGame',
-    physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 200 }
-      }
-    },
-    scene: scenes
-  };
+  create: function () {
+    this.add.image(0, 0, 'bg');
 
-	// Create game app
-	var game = new Phaser.Game(config);
+    this.pad = this.game.plugins.add(Phaser.VirtualJoystick);
 
-	// Globals
-	//game._URL = 'http://localhost/PhaserGames/PixelMemory/';	// this.sys.game._URL
-	//game._USER_ID = 0;
+    this.buttonA = this.pad.addButton(50, 300, 'generic', 'button1-up', 'button1-down');
+    this.buttonA.onDown.add(this.pressButtonA, this);
 
-	//game._CONFIG = config;
+    this.buttonB = this.pad.addButton(750, 300, 'generic', 'button2-up', 'button2-down');
+    this.buttonB.onDown.add(this.pressButtonB, this);
+
+    this.veggies = game.add.group();
+    this.veggies.enableBody = true;
+    this.veggies.physicsBodyType = Phaser.Physics.ARCADE;
+
+    for (var i = 0; i < 50; i++)
+    {
+        var c = this.veggies.create(game.world.randomX, Math.random() * 500, 'veggies', game.rnd.integerInRange(0, 36));
+        c.name = 'veg' + i;
+        c.body.immovable = true;
+    }
+
+    this.sprite = game.add.sprite(400, 550, 'phaser');
+    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    game.scale.onFullScreenChange.add(onFullScreenChange, this);
+
+    game.input.onDown.add(gofull, this);
+  },
+
+  pressButtonA: function () {
+    this.velx -= 300;
+  },
+
+  pressButtonB: function () {
+    this.velx += 300;
+  },
+
+  update: function () {
+    this.sprite.body.velocity.x = this.velx;
+  }
 };
 
-var PreloadScene= new Phaser.Scene('Preload');
-
-PreloadScene.preload = function()
-{
-	'use strict';
-
-  this.load.setBaseURL('http://labs.phaser.io');
-
-  this.load.image('sky', 'assets/skies/space3.png');
-  this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-  this.load.image('red', 'assets/particles/red.png');
-};
-
-PreloadScene.create= function()
-{
-	'use strict';
-
-  this.add.image(400, 300, 'sky');
-
-  var particles = this.add.particles('red');
-
-  var emitter = particles.createEmitter({
-    speed: 100,
-    scale: { start: 1, end: 0 },
-    blendMode: 'ADD'
-  });
-
-  var logo = this.physics.add.image(400, 100, 'logo');
-
-  logo.setVelocity(100, 200);
-  logo.setBounce(1, 1);
-  logo.setCollideWorldBounds(true);
-
-  emitter.startFollow(logo);
-};
-
-PreloadScene.update= function()
-{
-	'use strict';
-};
-
-PreloadScene.render= function()
-{
-
-};
-
-var Helper = function() {};
-
-Helper.prototype.createText = function(ctx, x, y, string, size, anchor)
-{
-	'use strict';
-};
-
-window.onload = function()
-{
-	'use strict';
-
-	var app = new App();
-	app.start();
+function onFullScreenChange(scale) {
+  if (scale.isFullScreen)
+  {
+    button.visible = true;
+  }
+  else
+  {
+    button.visible = false;
+  }
 }
+
+function gofull() {
+  game.scale.startFullScreen();
+}
+
+game.state.add('Game', PhaserGame, true);

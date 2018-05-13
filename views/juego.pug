@@ -3,6 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width,user-scalable=no ,initial-scale=1.0')
   title Juego IO3
+  link(rel='shortcut icon' type='image/ico' href='/favicon.ico')
   link(rel='stylesheet' href='css/style.css')
   link(rel='stylesheet' href='css/game.css')
   link(rel='stylesheet' href='css/modal.css')
@@ -18,10 +19,16 @@ body
   
   // Codigo del framework
   script(src='js/phaser.min.js').
+  script(src='js/phaser.2.3.1.virtual-joystick.min.js').
+  script(src='js/canvas-to-blob.js').
+  script(src='js/blob').
   
-  //Juego
+  // Div del juego, para que funcione responsive
   div#juego
-    
+  
+  // Script del juego
   script(src='js/game/basic.js').
+  
+  // Script de funcionalidades para el uso de la pantalla
   script(src='js/game/pantallaCompleta.js').
   script(src='js/game/reajustar.js').

@@ -10,11 +10,13 @@ function resizeApp()
   canvas.style.height = window.innerHeight;
 }
 
+// Recargar la pagina si este cambia de orientacion
 window.addEventListener("orientationchange", function() {
 	// Announce the new orientation number
   document.location.reload(false);
 }, false);
 
+//Evento del reajuste de la pantalla
 window.addEventListener('resize', function(e)
 {
   resizeApp();
