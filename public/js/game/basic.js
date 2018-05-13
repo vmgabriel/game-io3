@@ -29,6 +29,9 @@ var PhaserGame = function () {
 
   //Datos de personaje
   this.orientacionPersonaje = 0;
+
+  // Respaldo
+  this.respaldo = false;
 };
 
 PhaserGame.prototype = {
@@ -82,22 +85,6 @@ PhaserGame.prototype = {
     this.stick.alignBottomLeft(20);
     this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
-    // Particulas
-    // this.hojas = game.add.physicsGroup();
-    // for (var i=0; i < this.particulas; i++)
-    // {
-    //   var c = this.hojas.create(game.world.randomX, 0, 'hoja1');
-    //   c.name = 'hoj' + i;
-    //   c.body.immovable = true;
-    //   c.scale.setTo((Math.random() * 0.6) + 0.01);
-    // }
-    this.hojas = game.add.group();
-    this.hojas.createMultiple(250, 'hoja1', 0, false);
-    //this.hojas.scale.setTo((Math.random() * 0.6) + 0.01);
-    game.physics.enable(this.hojas, Phaser.Physics.ARCADE);
-
-    game.time.events.loop(150, generacionHojas, this);
-
     // Corazones
     this.corazones = game.add.physicsGroup();
     for (var i = 0; i < this.vida; i++)
@@ -116,12 +103,28 @@ PhaserGame.prototype = {
 
     // Personaje
     this.sprite = game.add.sprite(300, 500, 'pQuieto');
-    this.sprite.scale.setTo(0.2, 0.2);
+    this.sprite.scale.setTo(0.15, 0.15);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
     this.sprite.body.allowGravity = false;
     this.sprite.loadTexture('pQuieto', 0);
     this.sprite.animations.add('quieto');
     this.sprite.animations.play('quieto', 30, true);
+
+    // Particulas
+    // this.hojas = game.add.physicsGroup();
+    // for (var i=0; i < this.particulas; i++)
+    // {
+    //   var c = this.hojas.create(game.world.randomX, 0, 'hoja1');
+    //   c.name = 'hoj' + i;
+    //   c.body.immovable = true;
+    //   c.scale.setTo((Math.random() * 0.6) + 0.01);
+    // }
+    this.hojas = game.add.group();
+    this.hojas.createMultiple(250, 'hoja1', 0, false);
+    //this.hojas.scale.setTo((Math.random() * 0.6) + 0.01);
+    game.physics.enable(this.hojas, Phaser.Physics.ARCADE);
+
+    game.time.events.loop(150, generacionHojas, this);
 
     // Configuracion de Pantalla completa
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
@@ -130,6 +133,9 @@ PhaserGame.prototype = {
   },
 
   update: function () {
+    // Colision de las hojas
+    game.physics.arcade.overlap(this.sprite, this.hojas, ocurrioColision, null, this);
+
     // Velocidad Maxima del Personaje
     var maxSpeed = 200;
 
@@ -150,6 +156,7 @@ PhaserGame.prototype = {
       this.sprite.x = 730;
     }
 
+    // Cambio de Sprite del Personaje
     if (this.stick.forceX < 0) {
       if (this.orientacionPersonaje != -1) {
         this.sprite.scale.x *= -1;
@@ -173,9 +180,6 @@ PhaserGame.prototype = {
 
     // Eliminar las hojas al salir del mundo
     this.hojas.forEachAlive(checkBounds, this);
-  },
-  render: function () {
-    game.debug.text("Velocidad de personaje: " + this.sprite.body.velocity.x, 32, 32);
   }
 };
 
@@ -197,7 +201,7 @@ function generacionHojas() {
     hoja.frame = game.rnd.integerInRange(0,6);
     hoja.exists = true;
     hoja.reset(game.world.randomX, 0);
-    hoja.scale.setTo((Math.random() * 0.6) + 0.01);
+    hoja.scale.setTo((Math.random() * 0.4) + 0.01);
     //hoja.body.bounce.y = 0.8;
   }
 }
@@ -208,6 +212,23 @@ function checkBounds(hoja)
   {
     hoja.kill();
   }
+}
+
+function ocurrioColision(personaje, hoja) {
+  if (!this.respaldo) {
+    var children = this.corazones.getAt(this.vida-1);
+    this.corazones.remove(children);
+    this.vida -= 1;
+    this.respaldo = true;
+    game.time.events.add(Phaser.Timer.SECOND * 3, function(){this.respaldo = false;}, this);
+    if (this.vida == 0) {
+      gameOver();
+    }
+  }
+}
+
+function gameOver() {
+  console.log("joder tio");
 }
 
 function getParameterByName(name) {
