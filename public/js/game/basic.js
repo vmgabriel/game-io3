@@ -2,12 +2,14 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example');
 
 var PhaserGame = function () {
   this.sprite;
-  this.veggies;
+  this.hojas;
   this.bulletTime = 0;
   this.bullet;
   this.pad;
-  this.velx = 0;
   this.stick;
+
+  // Animaciones
+  this.quieto;
 };
 PhaserGame.prototype = {
   init: function () {
@@ -15,11 +17,26 @@ PhaserGame.prototype = {
     this.physics.startSystem(Phaser.Physics.ARCADE);
   },
   preload: function () {
-    this.load.image('bg', 'img/game/sky2.png');
+
+    // Fondo de Pantalla
+    this.load.image('bg', 'img/game/background/verano.jpg');
+
+    // Josystick
     this.load.atlas('generic', 'img/game/joystick/generic-joystick.png', 'json/generic-joystick.json');
 
-    game.load.image('phaser', 'img/game/phaser-dude.png');
-    game.load.spritesheet('veggies', 'img/game/fruitnveg32wh37.png', 32, 32);
+    // Personaje
+    var code = getParameterByName('code');
+    if (code != "1" || code != "20131020047")
+    {
+      game.load.spritesheet('pQuieto', 'img/game/man/quieto.png', 319, 486, 10);
+    }
+    else
+    {
+      game.load.spritesheet('pQuieto', 'img/game/girl/quieto.png', 641, 542, 10);
+    }
+
+    //Particulas
+    game.load.image('hoja1', 'img/game/particles/leaf1.png');
   },
 
   create: function () {
@@ -32,22 +49,33 @@ PhaserGame.prototype = {
     this.stick.alignBottomLeft(20);
     this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
-    this.veggies = game.add.group();
-    this.veggies.enableBody = true;
-    this.veggies.physicsBodyType = Phaser.Physics.ARCADE;
+    this.hojas = game.add.emitter(game.world.centerX, 0, 100);
 
-    for (var i = 0; i < 50; i++)
-    {
-      var c = this.veggies.create(game.world.randomX, Math.random() * 500, 'veggies', game.rnd.integerInRange(0, 36));
-      c.name = 'veg' + i;
-      c.body.immovable = true;
-    }
+    this.hojas.makeParticles('hoja1');
 
-    this.sprite = game.add.sprite(400, 550, 'phaser');
+    this.hojas.minParticleSpeed.setTo(-200, 30);
+    this.hojas.maxParticleSpeed.setTo(300, 100);
+    this.hojas.minParticleScale = 0.1;
+    this.hojas.maxParticleScale = 0.6;
+    this.hojas.gravity = 60;
+
+    //  This will emit a quantity of 5 particles every 500ms. Each particle will live for 2000ms.
+    //  The -1 means "run forever"
+    this.hojas.flow(5000, 500, 5, -1);
+
+    //  This will emit a single particle every 100ms. Each particle will live for 2000ms.
+    //  The 100 means it will emit 100 particles in total and then stop.
+    // this.hojas.flow(2000, 100, 1, 100);
+
+    this.sprite = game.add.sprite(300, 500, 'pQuieto');
+
+    this.sprite.animations.add('quieto');
+    this.sprite.animations.play('quieto', 10, true);
+
+    this.sprite.scale.setTo(0.2, 0.2);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-    game.scale.onFullScreenChange.add(onFullScreenChange, this);
 
     game.input.onDown.add(gofull, this);
   },
@@ -69,19 +97,15 @@ PhaserGame.prototype = {
   }
 };
 
-function onFullScreenChange(scale) {
-  if (scale.isFullScreen)
-  {
-    button.visible = true;
-  }
-  else
-  {
-    button.visible = false;
-  }
-}
-
 function gofull() {
   game.scale.startFullScreen();
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 game.state.add('Game', PhaserGame, true);
