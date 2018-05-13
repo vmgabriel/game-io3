@@ -1,19 +1,40 @@
-// Get the canvas element form the page
-var canvas = document.getElementById("canvasGame");
-var contexto = canvas.getContext('2d');
-
-// Obtener el maximo del canvas
-canvas.width  = window.innerWidth;
-canvas.height = window.innerHeight;
-
-function fullscreen(){
-  var el = document.getElementById('canvasGame');
-  if(el.webkitRequestFullScreen) {
-    el.webkitRequestFullScreen();
+// Fullscreen
+function fs_status()
+{
+  if(document.fullscreenElement)
+  {
+    return true;
   }
-  else {
-    el.mozRequestFullScreen();
+  else if(document.webkitFullscreenElement)
+  {
+    return true;
+  }
+  else if(document.mozFullScreenElement)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
   }
 }
 
-canvas.addEventListener("click", fullscreen)
+function goFullscreen()
+{
+  if(fs_status())
+  {
+    return;
+  }
+
+  var el = document.getElementsByTagName('canvas')[0];
+  var requestFullScreen = el.requestFullscreen || el.msRequestFullscreen || el.mozRequestFullScreen || el.webkitRequestFullscreen;
+
+  if(requestFullScreen)
+  {
+    requestFullScreen.call(el);
+  }
+  resizeApp();
+}
+
+document.getElementById('juego').addEventListener('click', goFullscreen);
+document.getElementById('juego').addEventListener('touchstart', goFullscreen);

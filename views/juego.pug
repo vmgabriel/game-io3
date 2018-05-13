@@ -6,18 +6,22 @@ head
   link(rel='stylesheet' href='css/style.css')
   link(rel='stylesheet' href='css/game.css')
   link(rel='stylesheet' href='css/modal.css')
-  // Migrando iconos del juego
-  link(rel='stylesheet' href='css/all.css')
   // migracion fonts
   link(rel='stylesheet' href='css/bootstrap.min.css')
   
 body
-  canvas#canvasGame(height='400px' width='800px')
-  // Fondo
-  script(href='js/jquery-3.3.1.slim.min.js').
-  script(href='js/popper.min.js').
-  script(href='js/bootstrap.min.js').
-  script(defer='' href='js/all.js')
+  // canvas#canvasGame(height='400px' width='800px')
+  // Los Scripts Necesarios
+  script(src='js/jquery-3.3.1.slim.min.js').
+  script(src='js/popper.min.js').
+  script(src='js/bootstrap.min.js').
   
-  script(src='js/game/pantallaCompleta.js')
-  script(src='js/game/fondo.js')
+  // Codigo del framework
+  script(src='js/phaser.min.js').
+  
+  //Juego
+  div#juego
+    
+  script(src='js/game/basic.js').
+  script(src='js/game/pantallaCompleta.js').
+  script(src='js/game/reajustar.js').
