@@ -10,14 +10,17 @@ var PhaserGame = function () {
 
   // Animaciones
   this.quieto;
+
+  this.timer;
+  this.timerText;
 };
 PhaserGame.prototype = {
   init: function () {
     this.game.renderer.renderSession.roundPixels = true;
     this.physics.startSystem(Phaser.Physics.ARCADE);
   },
-  preload: function () {
-
+  preload: function ()
+  {
     // Fondo de Pantalla
     this.load.image('bg', 'img/game/background/verano.jpg');
 
@@ -39,9 +42,12 @@ PhaserGame.prototype = {
     game.load.image('hoja1', 'img/game/particles/leaf1.png');
   },
 
-  create: function () {
+  create: function ()
+  {
+    // Fondo
     this.add.image(0, 0, 'bg');
 
+    // Joystick
     this.pad = this.game.plugins.add(Phaser.VirtualJoystick);
 
     this.stick = this.pad.addStick(0, 0, 200, 'generic');
@@ -49,6 +55,7 @@ PhaserGame.prototype = {
     this.stick.alignBottomLeft(20);
     this.stick.motionLock = Phaser.VirtualJoystick.HORIZONTAL;
 
+    // Particulas
     this.hojas = game.add.emitter(game.world.centerX, 0, 100);
 
     this.hojas.makeParticles('hoja1');
@@ -67,16 +74,20 @@ PhaserGame.prototype = {
     //  The 100 means it will emit 100 particles in total and then stop.
     // this.hojas.flow(2000, 100, 1, 100);
 
+    // Personaje
     this.sprite = game.add.sprite(300, 500, 'pQuieto');
-
     this.sprite.animations.add('quieto');
     this.sprite.animations.play('quieto', 10, true);
-
     this.sprite.scale.setTo(0.2, 0.2);
     game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    // Tiempo en Juego
+    this.timer = this.time.create();
+    this.timer.start();
+    this.timerText = this.add.text(730, 30, "");
 
+    // Configuracion de Pantalla completa
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.input.onDown.add(gofull, this);
   },
 
@@ -94,6 +105,7 @@ PhaserGame.prototype = {
     {
       this.sprite.x = 130;
     }
+    this.timerText.text = this.timer.seconds.toFixed(1);
   }
 };
 
@@ -102,10 +114,10 @@ function gofull() {
 }
 
 function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 game.state.add('Game', PhaserGame, true);
