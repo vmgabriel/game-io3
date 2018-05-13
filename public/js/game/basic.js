@@ -26,6 +26,9 @@ var PhaserGame = function () {
 
   // Particulas en el juego
   this.particulas = 17;
+
+  //Datos de personaje
+  this.orientacionPersonaje = 0;
 };
 
 PhaserGame.prototype = {
@@ -46,14 +49,17 @@ PhaserGame.prototype = {
 
     // Personaje
     var code = getParameterByName('code');
-    if (code != "1" || code != "20131020047")
+    if (code == "1" || code == "20131020047")
     {
-      game.load.spritesheet('pQuieto', 'img/game/man/quieto.png', 319, 486, 10);
-      game.load.spritesheet('pMuerto', 'img/game/man/muerto.png', )
+      game.load.spritesheet('pQuieto', 'img/game/girl/quieto.png', 641, 542, 10);
+      game.load.spritesheet('pMuerto', 'img/game/girl/muerte.png', 605, 604, 10);
+      game.load.spritesheet('pCorrer', 'img/game/girl/correr.png', (5128/8), 542, 8);
     }
     else
     {
-      game.load.spritesheet('pQuieto', 'img/game/girl/quieto.png', 641, 542, 10);
+      game.load.spritesheet('pQuieto', 'img/game/man/quieto.png', 319, 486, 10);
+      game.load.spritesheet('pMuerto', 'img/game/man/muerte.png', 588, 600, 10);
+      game.load.spritesheet('pCorrer', 'img/game/man/correr.png', 415, 507, 10);
     }
 
     //Particulas
@@ -103,22 +109,24 @@ PhaserGame.prototype = {
       c.body.allowGravity = false;
     }
 
-    // Personaje
-    this.sprite = game.add.sprite(300, 500, 'pQuieto');
-    this.sprite.animations.add('quieto');
-    this.sprite.animations.play('quieto', 10, true);
-    this.sprite.scale.setTo(0.2, 0.2);
-    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-    this.sprite.body.allowGravity = false;
-
     // Tiempo en Juego
     this.timer = this.time.create();
     this.timer.start();
     this.timerText = this.add.text(730, 30, "");
 
+    // Personaje
+    this.sprite = game.add.sprite(300, 500, 'pQuieto');
+    this.sprite.scale.setTo(0.2, 0.2);
+    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+    this.sprite.body.allowGravity = false;
+    this.sprite.loadTexture('pQuieto', 0);
+    this.sprite.animations.add('quieto');
+    this.sprite.animations.play('quieto', 30, true);
+
     // Configuracion de Pantalla completa
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.input.onDown.add(gofull, this);
+    game.input.onUp.add(quietoPersonaje, this);
   },
 
   update: function () {
@@ -137,14 +145,46 @@ PhaserGame.prototype = {
     {
       this.sprite.x = 130;
     }
+    if (this.sprite.x > 730)
+    {
+      this.sprite.x = 730;
+    }
+
+    if (this.stick.forceX < 0) {
+      if (this.orientacionPersonaje != -1) {
+        this.sprite.scale.x *= -1;
+        this.sprite.loadTexture('pCorrer', 0);
+        this.sprite.animations.add('correr');
+        this.sprite.animations.play('correr', 30, true);
+        this.orientacionPersonaje = -1;
+      }
+    } else if (this.stick.forceX > 0) {
+      if (this.orientacionPersonaje != 1) {
+        this.sprite.scale.x = Math.abs(this.sprite.scale.x);
+        this.sprite.loadTexture('pCorrer', 0);
+        this.sprite.animations.add('correr');
+        this.sprite.animations.play('correr', 30, true);
+        this.orientacionPersonaje = 1;
+      }
+    }
 
     // Actualizacion del tiempo en pantalla
     this.timerText.text = this.timer.seconds.toFixed(1);
 
     // Eliminar las hojas al salir del mundo
     this.hojas.forEachAlive(checkBounds, this);
+  },
+  render: function () {
+    game.debug.text("Velocidad de personaje: " + this.sprite.body.velocity.x, 32, 32);
   }
 };
+
+function quietoPersonaje() {
+  this.sprite.loadTexture('pQuieto', 0);
+  this.sprite.animations.add('quieto');
+  this.sprite.animations.play('quieto', 30, true);
+  this.orientacionPersonaje = 0;
+}
 
 function gofull() {
   game.scale.startFullScreen();
