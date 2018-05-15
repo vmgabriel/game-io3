@@ -65,7 +65,15 @@ app.get("/juego", (req, res) => {
 });
 
 app.post("/puntaje", (req, res) => {
-  console.log(req.params);
+  let persona = new jugador({_id: parseInt(req.body.codigo)});
+  let nPuntaje = new puntaje({ puntaje: parseInt(req.body.puntaje), fechaIntento: Date.now(), numeroIntento: 3 ,jugador: persona._id});
+  nPuntaje.save().then(function() {
+      console.log("hecho");
+    }, function(err) {
+      console.log(String(err));
+    });
+  console.log("hecho");
+  res.redirect("/puntaje");
 });
 
 app.get("/creditos", (req, res) => {

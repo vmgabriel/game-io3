@@ -139,7 +139,7 @@ PhaserGame.prototype = {
 
     // Sonido
     music = game.add.audio('boden');
-    this.perderVida = game.add.audio('perder');
+    this.perderVida = game.add.audio('daño');
     music.play();
   },
 
