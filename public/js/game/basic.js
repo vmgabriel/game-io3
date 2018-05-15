@@ -17,9 +17,10 @@ var PhaserGame = function () {
   this.timerText;
 
   // Vida
-  this.vida = 3;
+  this.vida = 8;
   this.corazones;
   this.posCorazon = 30;
+  this.perderVida;
 
   // Gravedad
   this.gravedad = 80;
@@ -65,8 +66,13 @@ PhaserGame.prototype = {
       game.load.spritesheet('pCorrer', 'img/game/man/correr.png', 415, 507, 10);
     }
 
-    //Particulas
+    // Particulas
     game.load.image('hoja1', 'img/game/particles/leaf1.png');
+
+    // Sonido
+    //  Firefox doesn't support mp3 files, so use ogg
+    game.load.audio('boden', ['audio/oedipus_ark_pandora.mp3', 'audio/oedipus_wisball_highscore.ogg']);
+    game.load.audio('daño', 'audio/lazer.wav');
   },
 
   create: function ()
@@ -130,6 +136,11 @@ PhaserGame.prototype = {
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.input.onDown.add(gofull, this);
     game.input.onUp.add(quietoPersonaje, this);
+
+    // Sonido
+    music = game.add.audio('boden');
+    this.perderVida = game.add.audio('perder');
+    music.play();
   },
 
   update: function () {
@@ -219,16 +230,64 @@ function ocurrioColision(personaje, hoja) {
     var children = this.corazones.getAt(this.vida-1);
     this.corazones.remove(children);
     this.vida -= 1;
+    this.perderVida.play();
     this.respaldo = true;
     game.time.events.add(Phaser.Timer.SECOND * 3, function(){this.respaldo = false;}, this);
     if (this.vida == 0) {
-      gameOver();
+      // Creamos el formulario auxiliar
+      var form = document.createElement( "form" );
+
+      // Le añadimos atributos como el name, action y el method
+      with(form) {
+      setAttribute( "name", "formulario" );
+      setAttribute( "action", "/puntaje" );
+      setAttribute( "method", "post" );}
+
+      // Creamos un input para enviar el valor
+      var input1 = document.createElement( "input" );
+
+      // Le añadimos atributos como el name, type y el value
+      with(input1) {
+      setAttribute( "name", "puntaje" );
+      setAttribute( "type", "hidden" );
+      setAttribute( "value", this.timerText.text );}
+
+      var input2 = document.createElement( "input" );
+
+      // Le añadimos atributos como el name, type y el value
+      var fecha = Date.now();
+      with(input2) {
+      setAttribute( "name", "fecha" );
+      setAttribute( "type", "hidden" );
+      setAttribute( "value", fecha );}
+
+      var input3 = document.createElement( "input" );
+
+      // Le añadimos atributos como el name, type y el value
+      with(input3) {
+      var code = getParameterByName('code');
+      input3.setAttribute( "name", "codigo" );
+      input3.setAttribute( "type", "hidden" );
+      input3.setAttribute( "value", code );}
+
+      // Añadimos el input al formulario
+      form.appendChild( input1 );
+      form.appendChild( input2 );
+      form.appendChild( input3 );
+
+      // Añadimos el formulario al documento
+      document.getElementsByTagName( "body" )[0].appendChild( form );
+
+      console.log(document.formulario);
+
+      // Hacemos submit
+      document.formulario.submit();
     }
   }
 }
 
 function gameOver() {
-  console.log("joder tio");
+
 }
 
 function getParameterByName(name) {

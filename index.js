@@ -65,7 +65,7 @@ app.get("/juego", (req, res) => {
 });
 
 app.post("/puntaje", (req, res) => {
-  console.log(req.datos);
+  console.log(req.params);
 });
 
 app.get("/creditos", (req, res) => {
