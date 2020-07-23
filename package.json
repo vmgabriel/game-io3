@@ -23,7 +23,10 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "mongoose": "^5.0.17",
+    "path": "^0.12.7",
+    "phaser": "^3.7.1",
     "pug": "^2.0.3",
-    "mongoose": "^5.0.17"
+    "serve-favicon": "^2.5.0"
   }
 }

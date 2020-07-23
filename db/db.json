@@ -1,7 +1,7 @@
 
   {
   "jugador": [
-    { "_id": 1, "nombre": " Lilian Astrid Bejarano Garzon", "grupo":0, "intentos":8 },
+    { "_id": 1, "nombre": " Lilian Astrid Bejarano Garzon", "grupo":0, "sexo":"F", "intentos":8 },
     { "_id": 20111020014, "nombre": "CARDENAS MANUEL ANTONIO", "grupo":9, "intentos":3 },
     { "_id": 20121020067, "nombre": "BAQUERO JOHER MAURICIO", "grupo":5, "intentos":3 },
     { "_id": 20121020115, "nombre": "VILLAMIL PEREZ VICTOR MANUEL", "grupo":10, "intentos":3 },
@@ -10,7 +10,7 @@
     { "_id": 20122020125, "nombre": "TACHA GUTIERREZ OSCAR JUNIOR", "grupo":4, "intentos":3 },
     { "_id": 20122020069, "nombre": "CLAVIJO TOBON LUIS DANIEL", "grupo":4, "intentos":3 },
     { "_id": 20131020022, "nombre": "MORALES JORGE ALEJANDRO", "grupo":1, "intentos":3 },
-    { "_id": 20131020047, "nombre": "JARAMILLO VERA ESTEFANY", "grupo":1, "intentos":3 },
+    { "_id": 20131020047, "nombre": "JARAMILLO VERA ESTEFANY", "grupo":1, "sexo":"F", "intentos":3 },
     { "_id": 20131020101, "nombre": "SANCHEZ JONATHAN JAVIER", "grupo":4, "intentos":3 },
     { "_id": 20132020603, "nombre": "ESPITIA BRAYAN LEONARDO", "grupo":5, "intentos":3 },
     { "_id": 20141020018, "nombre": "PEÑUELA MESA EDISON ENRIQUE", "grupo":1, "intentos":3 },

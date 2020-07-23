@@ -3,21 +3,24 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width,user-scalable=no ,initial-scale=1.0')
   title Juego IO3
-  link(rel='stylesheet' href='css/style.css')
+  link(rel='shortcut icon' type='image/ico' href='/favicon.ico')
   link(rel='stylesheet' href='css/game.css')
-  link(rel='stylesheet' href='css/modal.css')
-  // Migrando iconos del juego
-  link(rel='stylesheet' href='css/all.css')
-  // migracion fonts
   link(rel='stylesheet' href='css/bootstrap.min.css')
   
 body
-  canvas#canvasGame(height='400px' width='800px')
-  // Fondo
-  script(href='js/jquery-3.3.1.slim.min.js').
-  script(href='js/popper.min.js').
-  script(href='js/bootstrap.min.js').
-  script(defer='' href='js/all.js')
+  // Los Scripts Necesarios
+  script(src='js/jquery-3.3.1.slim.min.js').
+  script(src='js/popper.min.js').
+  script(src='js/bootstrap.min.js').
   
-  script(src='js/game/pantallaCompleta.js')
-  script(src='js/game/fondo.js')
+  // Codigo del framework
+  script(src='js/phaser.min.js').
+  script(src='js/phaser.2.3.1.virtual-joystick.min.js').
+  script(src='js/canvas-to-blob.js').
+  script(src='js/blob').
+  
+  // Div del juego, para que funcione responsive
+  div#juego
+  
+  // Script del juego
+  script(src='js/game/basic.js').

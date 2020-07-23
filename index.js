@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const path = require('path');
 
 let jugador = require("./db/jugador").Jugador;
 let puntaje = require("./db/puntaje").Puntaje;
@@ -10,6 +12,7 @@ let app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Motor de Vista
 app.set("view engine", "pug");
@@ -62,7 +65,15 @@ app.get("/juego", (req, res) => {
 });
 
 app.post("/puntaje", (req, res) => {
-  console.log(req.datos);
+  let persona = new jugador({_id: parseInt(req.body.codigo)});
+  let nPuntaje = new puntaje({ puntaje: parseInt(req.body.puntaje), fechaIntento: Date.now(), numeroIntento: 3 ,jugador: persona._id});
+  nPuntaje.save().then(function() {
+      console.log("hecho");
+    }, function(err) {
+      console.log(String(err));
+    });
+  console.log("hecho");
+  res.redirect("/puntaje");
 });
 
 app.get("/creditos", (req, res) => {
